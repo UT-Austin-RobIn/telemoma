@@ -31,7 +31,7 @@ pip install -e .
 ### Quickstart
 To verify your installation the following code can be used to run TeleMoMa in a sandbox environment in iGibson.
 ```
-(telemoma) > python telemoma/demo.py --robot tiago --teleop_config telemoma/configs/only_vision.py 
+(telemoma) > python telemoma/demo_igibson.py --robot tiago --teleop_config telemoma/configs/only_vision.py 
 ```
 
 ```--teleop_config``` defines the input modality to be used for control each part of the robot. Some example configurations are provided in [telemoma/configs](telemoma/configs/) folder.

@@ -18,9 +18,7 @@ To get started, simply run,
 ```
 (telemoma) > python telemoma/demo.py --robot <tiago or fetch> --teleop_config <path to telemoma config>  
 ```
-Where the ```--robot``` can be chosen between tiago and fetch, and the ```--teleop_config``` is the config file specifying the input modality for teleoperation. Sample configurations are provided in the [telemoma/configs](telemoma/configs/) folder. 
-
-Note: 
+Where the ```--robot``` can be chosen between tiago and fetch, and the ```--teleop_config``` is the config file specifying the input modality for teleoperation. Sample configurations are provided in the [telemoma/configs](../configs/) folder. 
 
 ### OmniGibson
 
@@ -37,7 +35,9 @@ OmniGibson provides demo scripts of using TeleMoMa for robot teleoperation. To g
 and then follow the prompt to choose the robot and teleoepration method as you desire.
 
 ## Using TeleMoMa with real robots
-TeleMoMa can easily be integrated with real robots. We provide code for a real [Tiago++]() robot and a real [HSR]() robot.
+TeleMoMa can easily be integrated with real robots. Code for a real <b>PAL Tiago++</b> and <b>Toyota HSR</b> robot is provided in the [telemoma-real](https://github.com/UT-Austin-RobIn/telemoma/tree/telemoma-real) branch.
+
+We use ROS for communicating with the robots, thus requiring some [additional dependancies](https://github.com/UT-Austin-RobIn/telemoma/blob/telemoma-real/real-robots.md). 
 
 ## Setting Up TeleMoMa with your own robot
 TeleMoMa can be quickly set-up on a new robot through a simple gym environment acting as an interface between TeleMoMa and the robot. The gym interface must use the following convention for actions and observations,
@@ -55,6 +55,7 @@ TeleMoMa can be quickly set-up on a new robot through a simple gym environment a
 - torso: torso qpos (1-d)
 ```
 
-An example sim environment is provided [here](igibson/igibson_env.py) which can be run with the ```telemoma/demo_igibson.py``` script as shown above.
+An example sim environment is provided [here](igibson/igibson_env.py) which can be run with the ```telemoma/demo_igibson.py``` script as shown above. A real robot environment on a Tiago++ is available [here](https://github.com/UT-Austin-RobIn/telemoma/blob/telemoma-real/telemoma/robot_interface/tiago/tiago_gym.py). 
 
-A real robot environment on a Tiago++ is available [here]().
+
+We are always looking to extend the support of TeleMoMa to more robots. If you use TeleMoMa with a robot not currently supported and would like to contribute, feel free to open a new PR. 

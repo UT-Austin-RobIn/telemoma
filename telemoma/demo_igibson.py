@@ -2,7 +2,6 @@ import numpy as np
 from telemoma.robot_interface.igibson import *
 from telemoma.human_interface.teleop_policy import TeleopPolicy
 from importlib.machinery import SourceFileLoader
-import time
 
 COMPATIBLE_ROBOTS = ['tiago', 'fetch']
 
@@ -35,7 +34,6 @@ def main(args):
             break
 
         obs, _, _, _ = env.step(action)
-        # print(obs)
         
     teleop.stop()
     env.close()
