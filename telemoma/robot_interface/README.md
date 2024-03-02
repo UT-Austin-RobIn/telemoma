@@ -50,9 +50,9 @@ TeleMoMa can be quickly set-up on a new robot through a simple gym environment a
 
 # observations
 - right: end-effector position and quarternion wrt robot base + gripper open/close state (8-dimensional)
-- left: end-effector position and quarternion wrt robot base + gripper open/close state. None for single harm robots (8-dimensional)
+- left: end-effector position and quarternion wrt robot base + gripper open/close state. None for single arm robots (8-dimensional)
 - base: X, Y position delta and Z angular delta wrt the initial position of the robot at reset. Only required for vision teleop mode, can be None for rest (3-dimensional)
-- torso: torso qpos (1-d)
+- torso: torso qpos (1-dimensional)
 ```
 
 An example sim environment is provided [here](igibson/igibson_env.py) which can be run with the ```telemoma/demo_igibson.py``` script as shown above. A real robot environment on a Tiago++ is available [here](https://github.com/UT-Austin-RobIn/telemoma/blob/telemoma-real/telemoma/robot_interface/tiago/tiago_gym.py). 
