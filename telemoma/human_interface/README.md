@@ -8,7 +8,7 @@ We use ```pyrealsense2``` to communicate with a connected realsense camera. In t
 pip install pyrealsense2
 ```
 
-We also provide a ROS listener pipeline for the camera. Launch a realsense2 ROS node in a separate window and uncomment [this](https://github.com/ShivinDass/telemoma/blob/582d959c4eff74d83aa886bd7a09b61012b0a8e5/telemoma/configs/only_human_kpts.py#L5) line in the config.
+We also provide a ROS listener pipeline for the camera. Launch a realsense2 ROS node in a separate window and uncomment lines 6 and 7 in [this](https://github.com/UT-Austin-RobIn/telemoma/blob/main/telemoma/configs/only_vision.py) config.
 
 ### Usage Instructions
 For teleoperating the robot only using vision, use ```telemoma/configs/only_vision.py``` configuration.
@@ -57,7 +57,7 @@ It is worth noting, however, that due to the large amount of keys mapped to vari
 
 ## iPhone
 ### Setup Instructions
-We use the ARKit to track the phone's motion. Download the [app]((https://testflight.apple.com/join/wGtbRk4w)) on your phone and connect to the same network as the development computer. Set the IP of the develepment computer and the port to be used to listen to the mobile phone readings over [here](https://github.com/ShivinDass/telemoma/blob/895388216dc8711e16c18d740488442422b8f396/telemoma/input_interface/mobile_phone.py#L12). 
+We use the ARKit to track the phone's motion. Download the [app](https://testflight.apple.com/join/wGtbRk4w) on your phone and connect to the same network as the development computer. Set the IP of the develepment computer and the port to be used to listen to the mobile phone readings over [here](https://github.com/UT-Austin-RobIn/telemoma/blob/8ca898c306b4cd93faef82a0a30df755fe4f9b6b/telemoma/configs/only_mobile_phone.py#L4). 
 
 ### Usage Instructions
 For controlling the robot only using spacemouse, use ```telemoma/configs/only_mobile_phone.py``` configuration.
