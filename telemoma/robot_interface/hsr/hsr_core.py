@@ -54,7 +54,7 @@ class HSR:
                 self.base = self.robot.try_get('omni_base')
 
                 dir_path = os.path.dirname(os.path.realpath(__file__))
-                self.ik_solver = TracIKSolver(dir_path+"/../../urdf/hsrb4s.urdf", "base_footprint", "hand_palm_link",
+                self.ik_solver = TracIKSolver(dir_path+"/../urdf/hsrb4s.urdf", "base_footprint", "hand_palm_link",
                                               timeout=0.025, epsilon=5e-4, solve_type="Distance")
 
                 break
@@ -84,7 +84,6 @@ class HSR:
 
     @property
     def eef_pose(self):
-        # start_time = time.time()
         p = self.whole_body.joint_positions
         joint_positions = np.zeros(self.ik_solver.number_of_joints)
         for joint in range(3, self.ik_solver.number_of_joints):
@@ -93,7 +92,6 @@ class HSR:
         eef_matrix = self.ik_solver.fk(joint_positions)
         q = T.quaternion_from_matrix(eef_matrix)
         t = T.translation_from_matrix(eef_matrix)
-        # print ("eef fk time: ", time.time() - start_time, t, q)
 
         return np.concatenate((t, q))
 

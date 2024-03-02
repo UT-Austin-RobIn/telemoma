@@ -1,7 +1,5 @@
 import rospy
 
-from telemoma.robot_interface.tiago.tiago_gym import TiagoGym
-from telemoma.robot_interface.hsr.hsr_gym import HSRGym
 from telemoma.human_interface.teleop_policy import TeleopPolicy
 
 from importlib.machinery import SourceFileLoader
@@ -12,6 +10,7 @@ def main(args):
     teleop_config = SourceFileLoader('conf', args.teleop_config).load_module().teleop_config
 
     if args.robot == 'tiago':
+        from telemoma.robot_interface.tiago.tiago_gym import TiagoGym
         env = TiagoGym(
                 frequency=10,
                 head_policy=None,
@@ -23,7 +22,14 @@ def main(args):
                 left_gripper_type='robotiq2F-85'
             )
     elif args.robot == 'hsr':
-        raise NotImplementedError('HSR not implemented yet. Coming soon!')
+        from telemoma.robot_interface.hsr.hsr_gym import HSRGym
+        env = HSRGym(
+                frequency=10,
+                head_policy=None,
+                base_enabled=True,
+                torso_enabled=False,
+                arm_enabled=True,
+            )
     else:
         raise ValueError(f'Unknown robot: {args.robot}')
     obs = env.reset()
