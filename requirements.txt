@@ -6,3 +6,5 @@ pyrealsense2
 pyspacemouse
 pynput==1.7.6
 matplotlib==3.8.2
+gym==0.26.2
+igibson

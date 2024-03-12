@@ -2,9 +2,9 @@
 
 <img src="assets/telemoma_architecture.png">
 
-[Shivin Dass](https://shivindass.github.io/)<sup>1</sup>, [Wensi Ai](https://wensi-ai.github.io/)<sup>2</sup>, [Yuqian Jiang](https://yuqianjiang.us/)<sup>1</sup>, [Samik Singh]()<sup>1</sup>, [Jiaheng Hu](https://jiahenghu.github.io/)<sup>2</sup>, [Ruohan Zhang](https://ai.stanford.edu/~zharu/)<sup>1</sup>, [Peter Stone](https://www.cs.utexas.edu/~pstone/)<sup>1</sup>, [Ben Abbatematteo](https://babbatem.github.io/)<sup>1</sup>, [Roberto Martín-Martín](https://robertomartinmartin.com/)<sup>1</sup>
+[Shivin Dass](https://shivindass.github.io/)<sup>1</sup>, [Wensi Ai](https://wensi-ai.github.io/)<sup>2</sup>, [Yuqian Jiang](https://yuqianjiang.us/)<sup>1</sup>, [Samik Singh]()<sup>1</sup>, [Jiaheng Hu](https://jiahenghu.github.io/)<sup>2</sup>, [Ruohan Zhang](https://ai.stanford.edu/~zharu/)<sup>1</sup>, [Peter Stone](https://www.cs.utexas.edu/~pstone/)<sup>1,3</sup>, [Ben Abbatematteo](https://babbatem.github.io/)<sup>1</sup>, [Roberto Martín-Martín](https://robertomartinmartin.com/)<sup>1</sup>
 
-<sup>1</sup>University of Texas at Austin, <sup>2</sup>Stanford University
+<sup>1</sup>The University of Texas at Austin, <sup>2</sup>Stanford University, <sup>3</sup>Sony AI
 
 [[Paper]](), [[Project Website]](https://robin-lab.cs.utexas.edu/telemoma/)
 
@@ -14,6 +14,8 @@
 - Python 3.9+
 
 Other system configurations may work, but we haven’t tested them extensively and may only be able to provide limited support.
+
+Note: TeleMoMa can work with higher versions of python but if iGibson sim environment is required then please use python3.9.
 
 ### Installation
 
