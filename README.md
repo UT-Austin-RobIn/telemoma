@@ -6,7 +6,9 @@
 
 <sup>1</sup>The University of Texas at Austin, <sup>2</sup>Stanford University, <sup>3</sup>Sony AI
 
-[[Paper]](), [[Project Website]](https://robin-lab.cs.utexas.edu/telemoma/)
+[[Paper]](), [[Project Website]](https://robin-lab.cs.utexas.edu/telemoma-web/)
+
+TeleMoMa is a teleoperation toolkit that enables intuitive teleoperation of high-DoF mobile manipulators. We provide a common pipeline that supports several teleoperation interfaces such as vision, VR, mobile phones and more, and enables mixing-and-matching between them. While we provide code for several mobile manipulators in sim and real, the versatility of TeleMoMa allows easy plug-and-play teleoperation of any mobile manipulator in general. 
 
 ## Setup  
 ### System Requirements
