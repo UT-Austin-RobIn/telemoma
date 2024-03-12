@@ -20,7 +20,7 @@ Note: TeleMoMa can work with higher versions of python but if iGibson sim enviro
 ### Installation
 
 ```
-git clone https://github.com/ShivinDass/telemoma.git
+git clone https://github.com/UT-Austin-RobIn/telemoma.git
 cd telemoma
 conda create --name telemoma python==3.9
 conda activate telemoma
