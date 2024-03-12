@@ -8,7 +8,7 @@ We use ```pyrealsense2``` to communicate with a connected realsense camera. In t
 pip install pyrealsense2
 ```
 
-We also provide a ROS listener pipeline for the camera. Launch a realsense2 ROS node in a separate window and uncomment lines 6 and 7 in [this](https://github.com/UT-Austin-RobIn/telemoma/blob/main/telemoma/configs/only_vision.py) config.
+We also provide a ROS listener pipeline for the camera. Launch a realsense2 ROS node in a separate window, and in [this](https://github.com/UT-Austin-RobIn/telemoma/blob/main/telemoma/configs/only_vision.py) config, comment out line 4 and uncomment lines 6 and 7 before running the demo script.
 
 ### Usage Instructions
 For teleoperating the robot only using vision, use ```telemoma/configs/only_vision.py``` configuration.
@@ -32,10 +32,12 @@ Note 2: If using Oculus for controlling arms and Vision for controlling the base
 
 ## Spacemouse
 ### Setup Instructions
-We use ```pyspacemouse``` to communicate with a connected spacemouse. In the conda environment run to install it,
+We use ```pyspacemouse``` to communicate with a connected spacemouse. In the conda environment run the following to install it,
 ```
 pip install pyspacemouse
 ```
+Please follow the full setup process at the [pyspacemouse repo](https://github.com/JakubAndrysek/pyspacemouse) if using spacemouse for the first time.
+
 ### Usage Instructions
 For teleoperating the robot only using spacemouse, use ```telemoma/configs/only_spacemouse.py``` configuration.
 
@@ -55,6 +57,8 @@ If they wish, users can also customize key bindings by directly changing the map
 
 It is worth noting, however, that due to the large amount of keys mapped to various robot DoFs, it would be unintuitive to control the robot with only the keyboard. Therefore it is recommended to leverage the modularity of TeleMoMa and combine keyboard with other teleoperation methods. 
 
+Note: If using keyboard control in iGibson, please deselect the viewer windows after launching the script. Since the iGibson viewers by default listen to keyboard strokes, this would help avoid unwanted behavior.
+
 ## iPhone
 ### Setup Instructions
 We use the ARKit to track the phone's motion. Download the [app](https://testflight.apple.com/join/wGtbRk4w) on your phone and connect to the same network as the development computer. Set the IP of the develepment computer and the port to be used to listen to the mobile phone readings over [here](https://github.com/UT-Austin-RobIn/telemoma/blob/8ca898c306b4cd93faef82a0a30df755fe4f9b6b/telemoma/configs/only_mobile_phone.py#L4). 
@@ -66,4 +70,4 @@ Start the script on the develeopment computer and press the \<Connect\> button o
 
 Once the phone is connected you can press \<Start\> and start controlling the robot. The \<Gripper\> button is overloaded and is used to toggle between opening and closing the robot gripper. Controlling the base motion using a mobile phone is under development.
 
-Note 1: If the mapping between the phone and the robot seems off, restart the app and reconnect while holding the phone in the desired initial position.
+Note: If the mapping between the phone and the robot seems off, restart the app and reconnect while holding the phone in the desired initial position.
