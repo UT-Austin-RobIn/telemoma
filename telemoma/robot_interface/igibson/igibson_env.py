@@ -1,6 +1,7 @@
 import gym
 import time
 import numpy as np
+from typing import Tuple
 from collections import OrderedDict
 from telemoma.utils.general_utils import AttrDict
 from telemoma.human_interface.teleop_core import TeleopObservation, TeleopAction
@@ -11,9 +12,10 @@ from igibson.scenes.empty_scene import EmptyScene
 
 class iGibsonEnv(gym.Env):
 
-    def __init__(self, robot_name, frequency=10) -> None:
+    def __init__(self, robot_name) -> None:
         self.robot_name = robot_name
-        self.frequency = frequency
+        self.teleop_frequency = 10
+        self.render_frequency = 20
 
         gui = 'ig'
         # Infer what GUI(s) to use
@@ -26,6 +28,8 @@ class iGibsonEnv(gym.Env):
             raise ValueError("Unknown GUI: {}".format(gui))
         
         self.s = Simulator( 
+                            physics_timestep=1/120.,
+                            render_timestep=1/self.render_frequency,
                             mode=render_mode,
                             use_pb_gui=use_pb_gui,
                             image_width=512,
@@ -131,19 +135,19 @@ class iGibsonEnv(gym.Env):
     def preprocess_action(self, action):
         raise NotImplementedError
 
-    def step(self, action: TeleopAction) -> tuple[TeleopObservation, float, bool, dict]:
+    def step(self, action: TeleopAction) -> Tuple[TeleopObservation, float, bool, dict]:
 
         action = self.preprocess_action(action)
         self.robot.apply_action(action)
-        for _ in range(5):
-            self.s.step()
-            self.step_count += 1
+
+        self.s.step()
+        self.step_count += 1
         self.s.step()
 
         self.end_time = time.time()
         if self.start_time is not None:
-            print('Idle time:', 1/self.frequency - (self.end_time-self.start_time))
-            time.sleep(max(0., 1/self.frequency - (self.end_time-self.start_time)))
+            print('Idle time:', 1/self.teleop_frequency - (self.end_time-self.start_time))
+            time.sleep(max(0., 1/self.teleop_frequency - (self.end_time-self.start_time)))
         self.start_time = time.time()
 
         obs = self._observation()
