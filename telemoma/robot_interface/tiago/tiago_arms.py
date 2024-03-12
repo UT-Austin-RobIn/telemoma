@@ -16,7 +16,7 @@ class TiagoArms:
         self.arm_enabled = arm_enabled
         self.side = side
 
-        self.urdf_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../tiago.urdf')
+        self.urdf_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../urdf/tiago.urdf')
 
         self.setup_listeners()
         self.setup_actors()
