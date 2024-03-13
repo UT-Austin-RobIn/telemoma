@@ -64,7 +64,7 @@ Note: If using keyboard control in iGibson, please deselect the viewer windows a
 We use the ARKit to track the phone's motion. Download the [app](https://testflight.apple.com/join/wGtbRk4w) on your phone and connect to the same network as the development computer. Set the IP of the develepment computer and the port to be used to listen to the mobile phone readings over [here](https://github.com/UT-Austin-RobIn/telemoma/blob/8ca898c306b4cd93faef82a0a30df755fe4f9b6b/telemoma/configs/only_mobile_phone.py#L4). 
 
 ### Usage Instructions
-For controlling the robot only using spacemouse, use ```telemoma/configs/only_mobile_phone.py``` configuration.
+For controlling the robot only using an iPhone, use ```telemoma/configs/only_mobile_phone.py``` configuration.
 
 Start the script on the develeopment computer and press the \<Connect\> button on the mobile app. The app will prompt for an IP and a port number, set it to be the same as earlier.
 

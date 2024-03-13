@@ -6,7 +6,7 @@
 
 <sup>1</sup>The University of Texas at Austin, <sup>2</sup>Stanford University, <sup>3</sup>Sony AI
 
-[[Paper]](), [[Project Website]](https://robin-lab.cs.utexas.edu/telemoma-web/)
+[[Paper]](https://arxiv.org/abs/2403.07869), [[Project Website]](https://robin-lab.cs.utexas.edu/telemoma-web/)
 
 TeleMoMa is a teleoperation toolkit that enables intuitive teleoperation of high-DoF mobile manipulators. We provide a common pipeline that supports several teleoperation interfaces such as vision, VR, mobile phones and more, and enables mixing-and-matching between them. While we provide code for several mobile manipulators in sim and real, the versatility of TeleMoMa allows easy plug-and-play teleoperation of any mobile manipulator in general. 
 
@@ -30,15 +30,23 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+### Install iGibson (Optional)
+We provide a demo script to test different teleoperation modes in the iGibson sim environment. iGibson can be installed by running,
+```
+(telemoma) > pip install igibson
+```
+In case of installation or runtime issues with iGibson, please checkout their exhaustive [documentation](https://stanfordvl.github.io/iGibson/) and [github](https://github.com/StanfordVL/iGibson).
+
 ## Usage
 
 ### Quickstart
+
 To verify your installation the following code can be used to run TeleMoMa in a sandbox environment in iGibson.
 ```
-(telemoma) > python telemoma/demo_igibson.py --robot tiago --teleop_config telemoma/configs/only_vision.py 
+(telemoma) > python telemoma/demo_igibson.py --robot tiago --teleop_config telemoma/configs/only_keyboard.py 
 ```
 
-```--teleop_config``` defines the input modality to be used for control each part of the robot. Some example configurations are provided in [telemoma/configs](telemoma/configs/) folder.
+```--teleop_config``` defines the input modality to be used for controlling each part of the robot. Some example configurations are provided in [telemoma/configs](telemoma/configs/) folder.
 
 Make sure the input hardware is correctly setup by following the instructions provided in [Human Interface](telemoma/human_interface/README.md).
 
@@ -50,7 +58,7 @@ The details on the sim environment installations, real robot codebase and instru
 
 ## Citation
 ```
-TODO...
+Coming Soon...
 ```
 <!-- ```
 @article{
