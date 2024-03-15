@@ -3,7 +3,27 @@
 import numpy as np
 from scipy.spatial.transform import Rotation as R
 
-canonical_quat = True # if True then w is always +ve
+canonical_quat = True   # if True then w is always +ve
+
+def rot2quat(rot, canonical_quat=False):
+    """
+    A custom wrapper of scipy's Rotation class to convert a rotation matrix to a quaternion
+    """
+    quat = R.as_quat(rot)
+    if canonical_quat:
+        # Ensure the first nonzero value of [w, x, y, z] is positive
+        if quat[-1] < 0:
+            quat = -quat
+        elif quat[-1] == 0:
+            if quat[0] < 0:
+                quat = -quat
+            elif quat[0] == 0:
+                if quat[1] < 0:
+                    quat = -quat
+                elif quat[1] == 0:
+                    if quat[2] < 0:
+                        quat = -quat
+    return quat
 
 ### Conversions ###
 def quat_to_euler(quat, degrees=False):
@@ -12,7 +32,7 @@ def quat_to_euler(quat, degrees=False):
 
 
 def euler_to_quat(euler, degrees=False):
-    return R.from_euler("xyz", euler, degrees=degrees).as_quat(canonical=canonical_quat)
+    return rot2quat(R.from_euler("xyz", euler, degrees=degrees), canonical=canonical_quat)
 
 
 def rmat_to_euler(rot_mat, degrees=False):
@@ -25,7 +45,7 @@ def euler_to_rmat(euler, degrees=False):
 
 
 def rmat_to_quat(rot_mat):
-    quat = R.from_matrix(rot_mat).as_quat(canonical=canonical_quat)
+    quat = rot2quat(R.from_matrix(rot_mat), canonical=canonical_quat)
     return quat
 
 
@@ -36,7 +56,7 @@ def quat_to_rmat(quat):
 ### Subtractions ###
 def quat_diff(target, source):
     result = R.from_quat(target) * R.from_quat(source).inv()
-    return result.as_quat(canonical=canonical_quat)
+    return rot2quat(result, canonical=canonical_quat)
 
 
 def angle_diff(target, source, degrees=False):
@@ -48,7 +68,7 @@ def angle_diff(target, source, degrees=False):
 ### Additions ###
 def add_quats(delta, source):
     result = R.from_quat(delta) * R.from_quat(source)
-    return result.as_quat(canonical=canonical_quat)
+    return rot2quat(result, canonical=canonical_quat)
 
 
 def add_angles(delta, source, degrees=False):
