@@ -13,7 +13,7 @@ long_description = "".join(lines)
 
 setup(
     name="telemoma",
-    version="0.1.1",
+    version="0.1.2",
     author="Shivin Dass",
     author_email='shivindass@gmail.com',
     description='A modular and versatile teleoperation system for mobile manipulation',
