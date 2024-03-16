@@ -5,12 +5,12 @@ from scipy.spatial.transform import Rotation as R
 
 canonical_quat = True   # if True then w is always +ve
 
-def rot2quat(rot, canonical_quat=False):
+def rot2quat(rot, canonical=False):
     """
     A custom wrapper of scipy's Rotation class to convert a rotation matrix to a quaternion
     """
     quat = R.as_quat(rot)
-    if canonical_quat:
+    if canonical:
         # Ensure the first nonzero value of [w, x, y, z] is positive
         if quat[-1] < 0:
             quat = -quat
