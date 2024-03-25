@@ -58,16 +58,12 @@ The details on the sim environment installations, real robot codebase and instru
 
 ## Citation
 ```
-Coming Soon...
-```
-<!-- ```
-@article{
-    shah2023mutex,
-    title=,
-    author=,
-    booktitle=,
-    year={2024}
+@article{dass2024telemoma,
+  title={TeleMoMa: A Modular and Versatile Teleoperation System for Mobile Manipulation},
+  author={Dass, Shivin and Ai, Wensi and Jiang, Yuqian and Singh, Samik and Hu, Jiaheng and Zhang, Ruohan and Stone, Peter and Abbatematteo, Ben and Martín-Martín, Roberto},
+  journal={arXiv preprint arXiv:2403.07869},
+  year={2024}
 }
-``` -->
+```
 
 ### Acknowledgements: [Mentioned here](acknowledgements.md)
