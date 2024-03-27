@@ -26,7 +26,6 @@ git clone https://github.com/UT-Austin-RobIn/telemoma.git
 cd telemoma
 conda create --name telemoma python==3.9
 conda activate telemoma
-pip install -r requirements.txt
 pip install -e .
 ```
 
