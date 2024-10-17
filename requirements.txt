@@ -1,9 +1,0 @@
-numpy==1.26
-opencv-python==4.9.0.80
-mediapipe==0.10.9
-scipy==1.11.4
-pyrealsense2
-pyspacemouse
-pynput==1.7.6
-matplotlib==3.8.2
-gym==0.26.2
