@@ -12,5 +12,6 @@ teleop_config = AttrDict(
         mobile_phone={},
         spacemouse={},
         keyboard={},
+        remote_vision={},
     )
 )
