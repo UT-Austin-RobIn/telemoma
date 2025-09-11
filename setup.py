@@ -13,7 +13,7 @@ long_description = "".join(lines)
 
 setup(
     name="telemoma",
-    version="0.2.0",
+    version="0.3.0",
     author="Shivin Dass",
     author_email='shivindass@gmail.com',
     description='A modular and versatile teleoperation system for mobile manipulation',
@@ -29,7 +29,7 @@ setup(
         "pyspacemouse",
         "pynput",
         "matplotlib",
-        "gym",
+        "gymnasium",
     ],
     packages=find_packages(),
     python_requires=">=3",
