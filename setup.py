@@ -23,7 +23,7 @@ setup(
     install_requires=[
         "numpy",
         "opencv-python",
-        "mediapipe",
+        "mediapipe==0.10.21",
         "scipy",
         "pyrealsense2",
         "pyspacemouse",
