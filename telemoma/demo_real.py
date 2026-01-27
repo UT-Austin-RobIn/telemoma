@@ -16,10 +16,10 @@ def main(args):
                 head_policy=None,
                 base_enabled=teleop_config.base_controller is not None,
                 torso_enabled=teleop_config.base_controller is not None,
-                right_arm_enabled=teleop_config.arm_right_controller is not None,
+                right_arm_enabled=None,
                 left_arm_enabled=teleop_config.arm_left_controller is not None,
-                right_gripper_type='robotiq2F-140',
-                left_gripper_type='robotiq2F-85'
+                right_gripper_type=None,
+                left_gripper_type='pal'
             )
     elif args.robot == 'hsr':
         from telemoma.robot_interface.hsr.hsr_gym import HSRGym
@@ -44,7 +44,7 @@ def main(args):
     while not rospy.is_shutdown():
         action = teleop.get_action(obs) # get_random_action()
         buttons = action.extra['buttons'] if 'buttons' in action.extra else {}
-    
+
         if buttons.get('A', False) or buttons.get('B', False):
             break
 
@@ -61,5 +61,5 @@ if __name__ == "__main__":
     parser.add_argument('--teleop_config', type=str, help='Path to the teleop config to use.')
     args = parser.parse_args()
 
-    assert args.robot in COMPATIBLE_ROBOTS, f'Unknown robots. Choose one from: {" ".join(COMPATIBLE_ROBOTS)}' 
+    assert args.robot in COMPATIBLE_ROBOTS, f'Unknown robots. Choose one from: {" ".join(COMPATIBLE_ROBOTS)}'
     main(args)

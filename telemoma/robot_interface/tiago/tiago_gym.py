@@ -19,7 +19,7 @@ class TiagoGym(gym.Env):
                     right_gripper_type=None,
                     left_gripper_type=None,
                     external_cams={}):
-        
+
         super(TiagoGym).__init__()
 
         self.frequency = frequency
@@ -68,7 +68,7 @@ class TiagoGym(gym.Env):
             high=np.inf,
             shape=(2+1,) # 2d x, y position delta, 1d z orientation delta
         )
-        
+
         ob_space['base_velocity'] = gym.spaces.Box(
             low=-np.inf,
             high=np.inf,
@@ -82,12 +82,12 @@ class TiagoGym(gym.Env):
         )
 
         for cam in self.cameras.keys():
-            
+
             ob_space[f'{cam}_image'] = gym.spaces.Box(
                 low=-np.inf,
                 high=np.inf,
                 shape=self.cameras[cam].img_shape,
-            ) 
+            )
 
             ob_space[f'{cam}_depth'] = gym.spaces.Box(
                 low=-np.inf,
@@ -100,7 +100,7 @@ class TiagoGym(gym.Env):
     @property
     def action_space(self):
         act_space = OrderedDict()
-        
+
         if self.right_arm_enabled:
             act_space['right'] = gym.spaces.Box(
                 low=-np.inf,
@@ -153,14 +153,14 @@ class TiagoGym(gym.Env):
         self.steps = 0
 
         self.tiago.reset(*args, **kwargs)
-        
+
         return self._observation()
-    
+
     def step(self, action):
 
         if action is not None:
             self.tiago.step(action)
-        
+
         self.end_time = time.time()
         if self.start_time is not None:
             # print('Idle time:', 1/self.frequency - (self.end_time-self.start_time))

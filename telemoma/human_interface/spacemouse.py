@@ -12,7 +12,7 @@ class SpaceMouseInterface(BaseTeleopInterface):
         super().__init__(*args, **kwargs)
         self.actions = TeleopAction()
         self.data_thread = None
-        self.controllable_robot_parts = ["right", "left", "base"]
+        self.controllable_robot_parts = ["left", "base"]
         self.cur_control_idx = 0
         # we want to scale down the movement speed to have better control for arms
         self.arm_speed_scaledown = kwargs.get("arm_speed_scaledown", 1.0)
@@ -67,7 +67,7 @@ class SpaceMouseInterface(BaseTeleopInterface):
                 self.actions.base[2] = -self.raw_data.yaw
                 self.actions.torso = self.raw_data.z
             else:
-                self.actions[controlling_robot_part][:3] = np.array(       
+                self.actions[controlling_robot_part][:3] = np.array(
                     [self.raw_data.y, -self.raw_data.x, self.raw_data.z]
                 ) * self.arm_speed_scaledown
                 self.actions[controlling_robot_part][3:6] = np.array(

@@ -8,10 +8,10 @@ from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 from telemoma.utils.ros_utils import Publisher, Listener, TFTransformListener
 from telemoma.utils.transformations import euler_to_quat, quat_to_euler, add_angles, quat_to_rmat
-from tracikpy import TracIKSolver   
+from tracikpy import TracIKSolver
 
 class TiagoArms:
-    
+
     def __init__(self, arm_enabled,  side='right') -> None:
         self.arm_enabled = arm_enabled
         self.side = side
@@ -35,7 +35,7 @@ class TiagoArms:
         if pos is None:
             return None
         return np.concatenate((pos, quat))
-    
+
     def setup_actors(self):
         self.arm_writer = None
         if self.arm_enabled:
@@ -55,31 +55,31 @@ class TiagoArms:
 
         cur_pos, cur_quat = self.arm_reader.get_transform(target_link=f'/arm_{self.side}_tool_link', base_link='/torso_lift_link')
         cur_euler = quat_to_euler(cur_quat)
-        
+
         target_pos = cur_pos + pos_delta
 
         target_euler = add_angles(euler_delta, cur_euler)
         target_quat = euler_to_quat(target_euler)
         return target_pos, target_quat
-    
+
     def create_joint_command(self, joint_goal, duration_scale):
         message = JointTrajectory()
         message.header = Header()
 
         joint_names = []
-        
+
         positions = list(self.joint_reader.get_most_recent_msg())
         for i in range(1, 8):
             joint_names.append(f'arm_{self.side}_{i}_joint')
             positions[i-1] = joint_goal[i-1]
-                
+
         message.joint_names = joint_names
 
-        # duration = 1.3 
+        # duration = 1.3
         duration = 0.7 + duration_scale
         point = JointTrajectoryPoint(positions=positions, time_from_start = rospy.Duration(duration))
         message.points.append(point)
-        return message 
+        return message
 
     def write(self, joint_goal, duration_scale):
         pose_command = self.create_joint_command(joint_goal, duration_scale)
@@ -101,20 +101,20 @@ class TiagoArms:
 
 
         return joint_goal, duration_scale
-            
+
     def step(self, action):
         if self.arm_enabled:
             target_pos, target_quat = self.process_action(action)
             joint_goal, duration_scale = self.find_ik(target_pos, target_quat)
-            
+
             if joint_goal is not None:
                 self.write(joint_goal, duration_scale)
 
     def reset(self, action):
         if self.arm_enabled:
             assert len(action) == 7
-            
+
             cur_joints = self.joint_reader.get_most_recent_msg()
             delay_scale = np.linalg.norm(cur_joints - action)
-            assert delay_scale < 4
+            assert delay_scale < 5, f"{delay_scale=}"
             self.write(action, delay_scale*3)

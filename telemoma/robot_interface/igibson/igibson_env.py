@@ -1,4 +1,4 @@
-import gym
+import gymnasium as gym
 import time
 import numpy as np
 from typing import Tuple

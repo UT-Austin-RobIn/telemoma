@@ -18,12 +18,12 @@ class Tiago:
                     left_arm_enabled=True,
                     right_gripper_type=None,
                     left_gripper_type=None):
-        
+
 
         self.head_enabled = head_policy is not None
         self.base_enabled = base_enabled
         self.torso_enabled = torso_enabled
-        
+
         self.head = TiagoHead(head_policy=head_policy)
         self.base = TiagoBaseVelocityControl(base_enabled=base_enabled)
         self.torso = TiagoTorso(torso_enabled=torso_enabled)
@@ -38,7 +38,7 @@ class Tiago:
             gripper_type = right_gripper_type if side=='right' else left_gripper_type
             if gripper_type is not None:
                 self.gripper[side] = self.gripper_map[gripper_type](side)
-        
+
         self.reset_pose = {
                 'right': [0.43, -0.81, 1.60, 1.78, 1.34, -0.49, 1.15, 1],
                 'left': [0.43, -0.81, 1.60, 1.78, 1.34, -0.49, 1.15, 1],
@@ -58,22 +58,22 @@ class Tiago:
         return self.gripper['left'].get_state()
 
     def step(self, action):
-        
+
         for side in ['right', 'left']:
             if action[side] is None:
                 continue
-            
+
             arm_action = action[side][:6]
             gripper_action = action[side][6]
 
             self.arms[side].step(arm_action)
-            
+
             if self.gripper[side] is not None:
                 self.gripper[side].step(gripper_action)
 
         if self.head_enabled:
             self.head.step(action)
-        
+
         if self.base_enabled:
             self.base.step(action['base'])
 
@@ -95,7 +95,7 @@ class Tiago:
 
         if ('torso' in self.reset_pose.keys()) and (self.torso is not None):
             self.torso.reset(self.reset_pose['torso'])
-        
+
         rospy.sleep(0.5)
 
         input('Reset complete. Press ENTER to continue')
